@@ -1,22 +1,29 @@
 package com.avila.curso.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+@Entity
+public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String phone;
     private String password;
 
-    public User() {
+    public Users() {
     }
 
-    public User(Long id, String nome, String email, String phone, String password) {
+    public Users(Long id, String nome, String email, String phone, String password) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -67,8 +74,8 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
+        if (!(o instanceof Users)) return false;
+        Users user = (Users) o;
         return Objects.equals(getId(), user.getId());
     }
 

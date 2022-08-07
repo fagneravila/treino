@@ -1,6 +1,6 @@
 package com.avila.curso.resources;
 
-import com.avila.curso.entities.User;
+import com.avila.curso.entities.Users;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
 
     @GetMapping
-    public ResponseEntity<User> findAll(){
-           User u = new User(1L,"Fagner","fagner.avila@gmail.com","999999","123456");
+    public ResponseEntity<Users> findAll(){
+           Users u = new Users(1L,"Fagner","fagner.avila@gmail.com","999999","123456");
 
            return ResponseEntity.ok().body(u);
     }
