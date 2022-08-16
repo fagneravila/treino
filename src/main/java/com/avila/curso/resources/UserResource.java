@@ -1,28 +1,33 @@
 package com.avila.curso.resources;
 
 import com.avila.curso.entities.Users;
-import com.avila.curso.repositories.UserRepository;
+import com.avila.curso.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource implements CommandLineRunner {
+public class UserResource {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService service;
 
-    @Override
-    public void run(String... args) throws Exception {
-        Users u1 = new Users(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
-        Users u2 = new Users(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+    @GetMapping
+    public ResponseEntity<List<Users>> findAll(){
+         // teste  Users u = new Users(1L,"Fagner","fagner.avila@gmail.com","999999","123456");
+           List<Users> list = service.findAll();
+           return ResponseEntity.ok().body(list);
+    }
 
-        userRepository.saveAll(Arrays.asList(u1,u2));
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Users> findById(@PathVariable Long id){
+         Users obj = service.findById(id);
+         return ResponseEntity.ok().body(obj);
     }
 }
