@@ -1,5 +1,7 @@
 package com.avila.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class Users implements Serializable {
     private String password;
 
 
-
+   @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 

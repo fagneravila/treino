@@ -1,9 +1,9 @@
 package com.avila.curso.repositories;
 
-import com.avila.curso.entities.Users;
+import com.avila.curso.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 }
