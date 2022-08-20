@@ -1,7 +1,7 @@
 package com.avila.curso.resources;
 
-import com.avila.curso.entities.Category;
-import com.avila.curso.services.CategoryService;
+import com.avila.curso.entities.Product;
+import com.avila.curso.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/categories")
-public class CategoryResource {
+@RequestMapping(value = "/products")
+public class ProductResource {
+
 
     @Autowired
-    private CategoryService service;
+    private ProductService service;
+
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll(){
-        List<Category> obj = service.findAll();
+    private ResponseEntity<List<Product>> findAll(){
+        List<Product> obj = service.findAll();
         return ResponseEntity.ok().body(obj);
     }
-
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id){
-        Category obj = service.findById(id);
+    public ResponseEntity<Product> findById(@PathVariable Long id){
+        Product obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
+
 }
