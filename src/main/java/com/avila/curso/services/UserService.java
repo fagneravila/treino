@@ -2,6 +2,7 @@ package com.avila.curso.services;
 
 import com.avila.curso.entities.Users;
 import com.avila.curso.repositories.UserRepository;
+import com.avila.curso.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class UserService {
 
     public Users findById(Long id){
         Optional<Users> obj = userRepository.findById(id);
-        return obj.get();
+        //return obj.get();
+        return obj.orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public Users insert(Users obj){
