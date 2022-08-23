@@ -42,4 +42,12 @@ public class UserResource {
          service.delete(id);
          return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Users> update(@RequestBody Users obj, @PathVariable Long id){
+        obj = service.update(id, obj);
+       // URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.ok().body(obj);
+    }
+
 }
